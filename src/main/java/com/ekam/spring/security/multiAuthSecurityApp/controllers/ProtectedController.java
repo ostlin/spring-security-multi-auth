@@ -28,6 +28,11 @@ public class ProtectedController implements ApplicationContextAware{
     public @ResponseBody Map<Integer, Map<Integer, String>> getSecurityFilterChainProxy2(){
         return this.getSecurityFilterChainProxyMap();
     }
+
+    @RequestMapping("/protected3")
+    public @ResponseBody Map<Integer, Map<Integer, String>> getSecurityFilterChainProxy3(){
+        return this.getSecurityFilterChainProxyMap();
+    }
     
     public Map<Integer, Map<Integer, String>> getSecurityFilterChainProxyMap(){
     	FilterChainProxy filterChainProxy =applicationContext.getBean(FilterChainProxy.class);

@@ -37,7 +37,7 @@ public class SsoSecurityConfig2 extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		http.antMatcher("/protected2/**").csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterAfter(siteMinderFilter2(), RequestHeaderAuthenticationFilter.class)
 				.authenticationProvider(preAuthProvider()).authorizeRequests()
 				.antMatchers("/protected2/**").authenticated()

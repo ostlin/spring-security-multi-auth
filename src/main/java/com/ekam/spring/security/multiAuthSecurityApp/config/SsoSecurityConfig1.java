@@ -37,14 +37,13 @@ public class SsoSecurityConfig1 extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		http.antMatcher("/protected1/**").csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterAfter(siteMinderFilter1(), RequestHeaderAuthenticationFilter.class)
 				.authenticationProvider(preAuthProvider()).authorizeRequests()
 				.antMatchers("/protected1/**").authenticated()
 				.antMatchers("/**").denyAll()
 				.and().exceptionHandling()
 				.authenticationEntryPoint(new Http403ForbiddenEntryPoint());
-
 	}
 
 	/*
